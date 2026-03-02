@@ -24,12 +24,14 @@ SCALER_PATH = os.path.join(BASE_DIR, "scaler.pkl")
 
 model = None
 scaler = None
+model_load_error = None
 
 try:
     model = joblib.load(MODEL_PATH)
     scaler = joblib.load(SCALER_PATH)
     print("Model and Scaler loaded successfully.")
 except Exception as e:
+    model_load_error = str(e)
     print(f"Error loading model/scaler: {e}")
 
 class CardioInput(BaseModel):
@@ -47,12 +49,22 @@ class CardioInput(BaseModel):
 
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to Cardio Prediction API"}
+    return {"message": "Welcome to Cardio Prediction API", "model_loaded": model is not None}
+
+@app.get("/health")
+def health():
+    return {
+        "model_loaded": model is not None,
+        "model_path": MODEL_PATH,
+        "model_exists": os.path.exists(MODEL_PATH),
+        "scaler_exists": os.path.exists(SCALER_PATH),
+        "load_error": model_load_error
+    }
 
 @app.post("/predict")
 def predict(data: CardioInput):
     if model is None or scaler is None:
-        raise HTTPException(status_code=500, detail="Model not loaded")
+        raise HTTPException(status_code=500, detail=f"Model not loaded. Error: {model_load_error}")
 
     # Prepare input dataframe
     input_dict = data.dict()
