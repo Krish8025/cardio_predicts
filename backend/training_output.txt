@@ -1,0 +1,61 @@
+﻿Loading data from E:\Sem 6\ML\ML_Project_cardio\backend\cardio_train_cleaned.csv...
+Dataset shape: (68484, 14)
+Created interaction features: smoke_age, smoke_bp, smoke_chol, alco_age, alco_bp, alco_chol, inactive_bmi, bp_ratio
+Training features (20): ['gender', 'height', 'weight', 'ap_hi', 'ap_lo', 'cholesterol', 'gluc', 'smoke', 'alco', 'active', 'age_years', 'bmi', 'smoke_age', 'smoke_bp', 'smoke_chol', 'alco_age', 'alco_bp', 'alco_chol', 'inactive_bmi', 'bp_ratio']
+Sample weight stats: min=0.5, max=3.0, mean=1.08
+Training Gradient Boosting Classifier with GridSearchCV...
+Fitting 3 folds for each of 12 candidates, totalling 36 fits
+Best Parameters: {'learning_rate': 0.05, 'max_depth': 3, 'n_estimators': 300}
+
+Accuracy: 0.7216
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.73      0.71      0.72      6906
+           1       0.71      0.73      0.72      6791
+
+    accuracy                           0.72     13697
+   macro avg       0.72      0.72      0.72     13697
+weighted avg       0.72      0.72      0.72     13697
+
+
+Feature Importances:
+  ap_hi: 0.6601
+  age_years: 0.0962
+  cholesterol: 0.0722
+  smoke_age: 0.0717
+  alco_age: 0.0292
+  ap_lo: 0.0167
+  weight: 0.0155
+  bmi: 0.0086
+  smoke_bp: 0.0086
+  gluc: 0.0050
+  inactive_bmi: 0.0048
+  alco_bp: 0.0047
+  bp_ratio: 0.0033
+  height: 0.0021
+  smoke_chol: 0.0008
+  gender: 0.0003
+  alco_chol: 0.0001
+  alco: 0.0000
+  smoke: 0.0000
+  active: 0.0000
+
+=== Verification Tests ===
+  Baseline (no smoke, no alco, active): prob=0.5058
+  Smoker only: prob=0.7788
+  Alcohol only: prob=0.8261
+  Inactive only: prob=0.5719
+  Smoker + Alcohol + Inactive: prob=0.8113
+
+=== Sanity Checks ===
+  [PASS] Smoker > Baseline
+  [PASS] Alcohol > Baseline
+  [PASS] Inactive > Baseline
+  [PASS] All risk factors > Baseline
+
+  All sanity checks PASSED!
+
+Saving model and scaler...
+Saved: cardio_model_gb_optimized.pkl, scaler.pkl
+Feature order: ['gender', 'height', 'weight', 'ap_hi', 'ap_lo', 'cholesterol', 'gluc', 'smoke', 'alco', 'active', 'age_years', 'bmi', 'smoke_age', 'smoke_bp', 'smoke_chol', 'alco_age', 'alco_bp', 'alco_chol', 'inactive_bmi', 'bp_ratio']

@@ -1,0 +1,16 @@
+﻿Loading cardio_model_gb_optimized.pkl...
+
+=== Comparison Tests ===
+  Baseline (no smoke, no alco, active): prediction=1, probability=0.5058
+  Smoker only: prediction=1, probability=0.7788
+  Alcohol only: prediction=1, probability=0.8261
+  Inactive only: prediction=1, probability=0.5719
+  Smoker + Alcohol + Inactive: prediction=1, probability=0.8113
+
+=== Results ===
+  [PASS] Smoker > Baseline
+  [PASS] Alcohol > Baseline
+  [PASS] Inactive > Baseline
+  [PASS] All risk > Baseline
+
+All tests PASSED!

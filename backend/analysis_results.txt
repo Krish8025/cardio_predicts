@@ -1,0 +1,45 @@
+Shape: (68484, 14)
+Columns: ['age', 'gender', 'height', 'weight', 'ap_hi', 'ap_lo', 'cholesterol', 'gluc', 'smoke', 'alco', 'active', 'cardio', 'age_years', 'bmi']
+
+=== Cardio rate by smoke ===
+  smoke=0: cardio_rate=0.4974, count=62454
+  smoke=1: cardio_rate=0.4685, count=6030
+
+=== Cardio rate by active ===
+  active=0: cardio_rate=0.5329, count=13462
+  active=1: cardio_rate=0.4855, count=55022
+
+=== Feature correlations with cardio ===
+  ap_hi: 0.4281
+  ap_lo: 0.3400
+  age: 0.2394
+  age_years: 0.2394
+  cholesterol: 0.2214
+  bmi: 0.1915
+  weight: 0.1798
+  gluc: 0.0892
+  gender: 0.0070
+  alco: -0.0085
+  height: -0.0129
+  smoke: -0.0164
+  active: -0.0377
+
+=== Model Feature Importances ===
+  ap_hi: 0.7412
+  age_years: 0.1236
+  cholesterol: 0.0785
+  ap_lo: 0.0159
+  bmi: 0.0155
+  weight: 0.0092
+  active: 0.0048
+  gluc: 0.0042
+  smoke: 0.0033
+  height: 0.0019
+  alco: 0.0011
+  gender: 0.0008
+
+=== Testing: smoker vs non-smoker (same params) ===
+  Non-smoker, Active:     prob=0.4891
+  Smoker, Active:         prob=0.4285
+  Non-smoker, Inactive:   prob=0.5573
+  Smoker, Inactive:       prob=0.4984
